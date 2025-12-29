@@ -14,6 +14,7 @@ services:
     #  dockerfile: Dockerfile
     #  context: .
     container_name: tactics-app
+    restart: unless-stopped
     ports:
       - '${LOCAL_PORT}:${LOCAL_PORT}'
     volumes:
