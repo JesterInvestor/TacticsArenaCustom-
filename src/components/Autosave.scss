@@ -1,0 +1,122 @@
+.inputTextAutosave {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+
+  box-sizing: border-box;
+  border-top: 1px solid rgba(0, 0, 0, 0);
+  border-right: 1px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid #888888;
+  border-left: 1px solid rgba(0, 0, 0, 0);
+  padding: 0 !important;
+  min-width: 190px;
+
+  &.disabled {
+    border-bottom-color: rgba(0, 0, 0, 0);
+  }
+}
+.inputTextAutosave:focus-within {
+  border-color: #b08d57;
+}
+.inputTextAutosave .input {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 4px;
+
+  SPAN {
+    visibility: hidden;
+    white-space: pre;
+  }
+  SPAN:empty::before {
+    content: ' ';
+  }
+
+  INPUT[type=text] {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    // Remove default margins in Safari
+    margin: 0;
+    border: 0 none;
+    padding: 4px;
+    width: 100%;
+
+    background-color: black;
+    color: inherit;
+
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      font-style: italic;
+      color: inherit;
+    }
+    &:focus::placeholder {
+      opacity: 0;
+    }
+  }
+}
+.inputTextAutosave .icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  padding: 0 !important;
+
+  &.hide {
+    display: none;
+  }
+
+  & > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+
+    &.fa {
+      font-size: 1.2em;
+    }
+  }
+  .fa {
+    line-height: 26px;
+    text-align: center;
+  }
+  .saved {
+    position: relative;
+
+    .fa-spinner {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .fa-check-circle {
+      color: #444444;
+    }
+  }
+}
+.inputTextAutosave.is-saving .icons {
+  .saved {
+    .fa-spinner {
+      display: block;
+    }
+    .fa-check-circle {
+      display: none;
+    }
+  }
+}
+.inputTextAutosave.is-saved .icons {
+  .saved {
+    .fa-check-circle {
+      color: #00CC00;
+    }
+  }
+}
+.error:empty {
+  display: none;
+}

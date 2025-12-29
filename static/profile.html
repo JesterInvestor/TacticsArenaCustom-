@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+  <TITLE>Tactics - Account Profile</TITLE>
+  <META name="viewport" content="width=device-width">
+
+  <!-- Native Experience for Safari on iOS -->
+  <META name="apple-mobile-web-app-capable" content="yes">
+  <META name="apple-mobile-web-app-status-bar-style" content="black">
+  <LINK rel="apple-touch-icon" href="/emblem_192.png">
+  <LINK href="/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <LINK href="/splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <LINK href="/splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <LINK href="/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <LINK href="/splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <LINK href="/splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <LINK href="/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <LINK href="/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <LINK href="/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <LINK href="/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+  <!-- Deprecated.  Superseded by the manifest. -->
+  <META name="mobile-web-app-capable" content="yes">
+
+  <LINK href="/manifest.json" rel="manifest">
+  <LINK href="/favicon.ico" rel="icon" sizes="16x16">
+  <LINK href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet" crossorigin="anonymous">
+  <LINK href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" crossorigin="anonymous">
+
+  <SCRIPT src="/jquery-1.12.4.min.js" crossorigin="anonymous"></SCRIPT>
+  <SCRIPT type="text/javascript" src="theme.min.js"></SCRIPT>
+  <SCRIPT type="text/javascript" src="errors.min.js"></SCRIPT>
+  <SCRIPT type="text/javascript">window.AUTO_CONNECT = true;</SCRIPT>
+  <SCRIPT type="text/javascript" src="tactics.min.js"></SCRIPT>
+  <SCRIPT type="text/javascript" src="profile.min.js"></SCRIPT>
+  <SCRIPT type="text/javascript" src="install.min.js"></SCRIPT>
+
+  <STYLE>
+    ::selection {
+      background: #b08d57;
+    }
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    BUTTON[name="WebGL"], BUTTON[name="WebGPU"] {
+      padding: 0 8px;
+    }
+
+    .page {
+      box-sizing: border-box;
+      padding: 8px;
+      width: 100%;
+      max-width: 800px;
+      height: 100%;
+      max-height: 600px;
+    }
+
+    .section {
+      background: linear-gradient(to right, #804a00 10%, 40%, #b08d57 60%, 80%, #804a00 90%);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      padding: 1px 12px;
+      margin-top: 12px;
+      text-align: center;
+      color: white;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+
+    .accountName {
+      text-align: center;
+    }
+
+    .acl {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .acl .rule {
+      display: flex;
+      align-items: center;
+      margin: 4px 0;
+      width: 290px;
+    }
+    .acl .rule .label {
+      flex-grow: 1;
+    }
+    .acl .rule .label .description {
+      font-size: 0.8em;
+    }
+    .acl .rule .disposition {
+      display: flex;
+      gap: 4px;
+      font-size: 1.2em;
+    }
+    .acl .rule .disposition > * {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+    }
+
+    .relationships {
+      text-align: center;
+    }
+    .relationships:empty::before {
+      font-style: italic;
+      content: 'You can friend, mute, or block a player after tapping their name in a game.';
+    }
+    .relationships .name > .inputTextAutosave {
+      width: 290px;
+    }
+    .relationships .name > .inputTextAutosave .icons .saved {
+      order: -1;
+    }
+    .relationships .icons > .fa {
+      cursor: pointer;
+    }
+
+    .friended.active {
+      color: #00FF00;
+    }
+    .muted.active, .blocked.active {
+      color: #FF0000;
+    }
+
+    DIV {
+      box-sizing: border-box;
+    }
+
+    .row {
+      padding: 4px 0;
+    }
+    .row .label, .row .value {
+      display: inline-block;
+    }
+    .row .label {
+      font-weight: bold;
+      width: 120px;
+      text-align: right;
+      padding-right: 8px;
+    }
+    .intro {
+      padding-bottom: 8px;
+      text-align: left;
+    }
+    .break {
+      padding: 8px 0;
+    }
+
+    .error {
+      text-align: center;
+      color: #ff0000;
+      padding: 4px;
+    }
+    .error:empty {
+      display: none;
+    }
+
+    @media (hover:hover) {
+      .manageLink .link:hover {
+        color: #CCFFFF;
+      }
+      .auth LI:not(.linked):hover, .gameList .game:hover {
+        border-color: #00FFFF;
+      }
+    }
+  </STYLE>
+</HEAD>
+<BODY>
+  <DIV class="page" style="display:none">
+    <DIV class="row back" style="text-align:center">
+      <A href="/online.html">Back to Game List</A>
+    </DIV>
+    <DIV class="section">
+      Profile
+    </DIV>
+    <DIV class="row accountName">
+      <DIV class="intro">
+        What name do you want to use?  It will be used as the <U>default</U> name when creating or joining games.  This name will also be protected against being used by others if you verify your account by linking Discord or Facebook on the <A href="/security.html">Security</A> page.
+      </DIV>
+      <DIV class="inputTextAutosave is-saved">
+        <DIV class="input">
+          <SPAN></SPAN>
+          <INPUT
+            type="text"
+            name="name"
+            maxLength=20
+            spellcheck="false"
+          />
+        </DIV>
+        <DIV class="icons">
+          <SPAN class="saved">
+            <SPAN class="fa fa-spinner fa-pulse"></SPAN>
+            <SPAN class="fa fa-check-circle"></SPAN>
+          </SPAN>
+        </DIV>
+      </DIV>
+      <DIV class="error"></DIV>
+    </DIV>
+    <DIV class="section">
+      Manage Relationships
+    </DIV>
+    <DIV class="row">
+      <DIV class="intro">
+        Manage friend, muted, and blocked players.
+      </DIV>
+      <DIV class="acl">
+        <DIV class="rule" data-rule="newAccounts">
+          <DIV class="label">
+            <DIV class="title">New Accounts</DIV>
+            <DIV class="description">Created account less than 7 days ago.</DIV>
+          </DIV>
+          <DIV class="disposition">
+            <SPAN class="muted fa fa-microphone-slash" title="Mute" data-value="muted"></SPAN>
+            <SPAN class="blocked fa fa-ban" title="Block" data-value="blocked"></SPAN>
+          </DIV>
+        </DIV>
+        <DIV class="rule" data-rule="guestAccounts">
+          <DIV class="label">
+            <DIV class="title">Guest Accounts</DIV>
+            <DIV class="description">Has not linked Discord or Facebook accounts.</DIV>
+          </DIV>
+          <DIV class="disposition">
+            <SPAN class="muted fa fa-microphone-slash" title="Mute" data-value="muted"></SPAN>
+            <SPAN class="blocked fa fa-ban" title="Block" data-value="blocked"></SPAN>
+          </DIV>
+        </DIV>
+      </DIV>
+      <DIV class="break">Individual relationships override the above rules.</DIV>
+      <DIV class="relationships"></DIV>
+    </DIV>
+    <DIV class="section">
+      Application
+    </DIV>
+    <DIV class="row client-version">
+      <DIV class="label">Client Version:</DIV><DIV class="value"></DIV>
+    </DIV>
+    <DIV class="row server-version">
+      <DIV class="label">Server Version:</DIV><DIV class="value"></DIV>
+    </DIV>
+    <DIV class="row webgl-engine">
+      <DIV class="label">WebGL:</DIV><DIV class="value"></DIV>
+    </DIV>
+    <DIV class="row webgpu-engine">
+      <DIV class="label">WebGPU:</DIV><DIV class="value"></DIV>
+    </DIV>
+  </DIV>
+</BODY>
+</HTML>

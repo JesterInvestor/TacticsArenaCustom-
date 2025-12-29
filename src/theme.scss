@@ -1,0 +1,173 @@
+HTML {
+  touch-action: manipulation;
+}
+
+/*
+ * Default positioning rules position the app in the center of the screen.
+ * The app takes up all the space it can up to the maximum size of the board.
+ * The board itself is positioned in the center of the app.
+ */
+HTML, BODY {
+  width: 100%;
+  height: 100%;
+}
+
+BODY {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: #DED8D5;
+  font-family: 'Open Sans', Arial, Verdana;
+  font-size: 0.8125em;
+
+  -webkit-text-size-adjust: none;
+  -webkit-touch-callout: none;
+}
+
+INPUT, BUTTON, SELECT {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+UL.choices {
+  margin: 0;
+  padding-left: 12px;
+  list-style: none;
+
+  LI {
+    display: flex;
+    align-items: center;
+
+    .sep::before {
+      content: '\2022';
+      margin: 0 6px 0 4px;
+    }
+  }
+}
+
+INPUT[type=checkbox],
+INPUT[type=radio] {
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+LABEL:not(.disabled) {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+  cursor: pointer;
+}
+LABEL:first-child {
+  padding: 4px 4px 4px 0;
+}
+
+LABEL INPUT[type=checkbox]:first-child,
+LABEL INPUT[type=radio]:first-child {
+  margin: 0 0.4em 0 0;
+}
+
+TEXTAREA {
+  // No scrollbars.  The chat TEXTAREA will grow to fit content.
+  overflow: hidden;
+  resize: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 8px;
+  border-right: 1px solid #444444;
+}
+::-webkit-scrollbar-track * {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #666666;
+}
+
+.view {
+  position: absolute;
+  visibility: hidden;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: auto;
+
+  &.show {
+    position: unset;
+    visibility: visible;
+  }
+}
+
+@media (hover:hover) {
+  BUTTON:hover,
+  BUTTON:focus {
+    background: radial-gradient(#b08d57, 80%, #804a00);
+  }
+  BUTTON:focus:not(.disabled) {
+    outline: none;
+  }
+}
+
+BUTTON {
+  background-image: radial-gradient(#b08d57 10%, #804a00);
+  color: #FFEECC;
+
+  box-sizing: border-box;
+  border: 1px solid #AA9977;
+  border-radius: 8px;
+  padding: 4px 8px;
+
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  cursor: pointer;
+
+  -webkit-touch-callout: none;
+}
+BUTTON.styled, BUTTON.link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 0 none;
+
+  background-color: transparent;
+  background-image: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: inherit;
+  font-weight: normal;
+  user-select: none;
+}
+BUTTON.link {
+  text-decoration: underline;
+}
+// Buttons with images, not content.
+BUTTON:empty {
+  border-radius: 0;
+}
+BUTTON:disabled, BUTTON.disabled {
+  background: radial-gradient(#DED8D5 10%, #444);
+  color: inherit;
+
+  border: 1px solid #DED8D5;
+
+  opacity: 0.4;
+  cursor: default;
+}
+
+A, BUTTON.link {
+  color: #00FFFF;
+}
+@media (hover:hover) {
+  A:hover, BUTTON.link:hover {
+    color: #CCFFFF;
+    text-decoration: underline;
+  }
+}
