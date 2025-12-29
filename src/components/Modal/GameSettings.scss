@@ -1,0 +1,50 @@
+.modal.gameSettings {
+  .content {
+    .identity, .info {
+      margin-bottom: 8px;
+    }
+    .settings {
+      display: grid;
+      align-items: center;
+      grid-template-columns: auto auto auto;
+
+      .audio.broken {
+        & > * {
+          display: none;
+        }
+        &::after {
+          content: 'Audio is broken in this browser.';
+          color: red;
+          grid-column: span 3;
+          padding: 4px 0;
+          // Fixes an apparent bug in Chrome
+          text-shadow: 0 0 red;
+        }
+      }
+      .row {
+        display: contents;
+
+        .label {
+          margin-right: 16px;
+        }
+        LABEL {
+          white-space: nowrap;
+        }
+      }
+
+      .barPosition {
+        display: none;
+      }
+    }
+  }
+}
+
+/*
+ * Landscape Orientation
+ */
+@media (max-width: 812px) and (min-aspect-ratio: 5/3) {
+  // Allow moving the bar to the left/right
+  .modal.gameSettings .content .settings .barPosition {
+    display: contents;
+  }
+}
